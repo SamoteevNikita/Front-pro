@@ -1,51 +1,54 @@
-let name = prompt('как вас зовут?')
-alert ('Hello, John! How are you?')
 
-let num1 = Number(prompt("Enter the first number:")); 
-let num2 = Number(prompt("Enter the second number:")); 
-
-
-let sum = num1 + num2;
-let difference = num1 - num2;
-let product = num1 * num2;
-let quotient = num1 / num2;
-
-alert(`Results:\nSum: ${sum}\nDifference: ${difference}\nProduct: ${product}\nQuotient: ${quotient}`);
-
-
-const value1 = prompt("Enter the first value:");
-const value2 = prompt("Enter the second value:");
-
-if (value1 == value2) {
-    alert (true)
+let birthYear = prompt("Введіть ваш рік народження:");
+if (birthYear === null) {
+  alert("Шкода, що Ви не захотіли ввести свій рік народження.");
 } else {
-    alert (false)
+  let city = prompt("Введіть місто, в якому Ви живете:");
+  if (city === null) {
+    alert("Шкода, що Ви не захотіли ввести своє місто.");
+  } else {
+    let sport = prompt("Введіть ваш улюблений вид спорту:");
+    if (sport === null) {
+      alert("Шкода, що Ви не захотіли ввести свій улюблений вид спорту.");
+    } else {
+      
+      const currentYear = new Date().getFullYear();
+      const age = currentYear - birthYear;
+
+      
+      let cityMessage;
+      switch (city.toLowerCase()) {
+        case "київ":
+          cityMessage = "Ти живеш у столиці України.";
+          break;
+        case "вашингтон":
+          cityMessage = "Ти живеш у столиці США.";
+          break;
+        case "лондон":
+          cityMessage = "Ти живеш у столиці Великої Британії.";
+          break;
+        default:
+          cityMessage = `Ти живеш у місті ${city}.`;
+      }
+
+      
+      let championMessage;
+      switch (sport.toLowerCase()) {
+        case "футбол":
+          championMessage = "Круто! Хочеш стати як Ліонель Мессі?";
+          break;
+        case "бокс":
+          championMessage = "Круто! Хочеш стати як Майк Тайсон?";
+          break;
+        case "теніс":
+          championMessage = "Круто! Хочеш стати як Роджер Федерер?";
+          break;
+        default:
+          championMessage = `Ваш улюблений вид спорту: ${sport}. Це теж чудово!`;
+      }
+
+      
+      alert(`Ваш вік: ${age} років.\n${cityMessage}\n${championMessage}`);
+    }
+  }
 }
-
-
-const number1 = Number(prompt("Enter the first value:")); 
-const number2 = Number(prompt("Enter the second value:")); 
-const number3 = Number(prompt("Enter the third value:")); 
-
-const average = (number1 + number2 + number3) / 3;
-alert(`The average is: ${average}`);
-
-alert("5-digits output");
-
-let number = +prompt("Input 5-digits number:");
-let digits = "";
-
-while (number > 0) {
-    let digit = number % 10;
-    digits = digit + " " + digits;
-    number = (number - digit) / 10;
-}
-
-alert(digits.trim());
-
-
-
-
-
-
-
