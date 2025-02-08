@@ -1,138 +1,146 @@
 
-let birthYear = prompt("Введіть ваш рік народження:");
-if (birthYear === null) {
-  alert("Шкода, що Ви не захотіли ввести свій рік народження.");
-} else {
-  let city = prompt("Введіть місто, в якому Ви живете:");
-  if (city === null) {
-    alert("Шкода, що Ви не захотіли ввести своє місто.");
-  } else {
-    let sport = prompt("Введіть ваш улюблений вид спорту:");
-    if (sport === null) {
-      alert("Шкода, що Ви не захотіли ввести свій улюблений вид спорту.");
-    } else {
-      
-      const currentYear = new Date().getFullYear();
-      const age = currentYear - birthYear;
 
-      
-      let cityMessage;
-      switch (city.toLowerCase()) {
-        case "київ":
-          cityMessage = "Ти живеш у столиці України.";
-          break;
-        case "вашингтон":
-          cityMessage = "Ти живеш у столиці США.";
-          break;
-        case "лондон":
-          cityMessage = "Ти живеш у столиці Великої Британії.";
-          break;
-        default:
-          cityMessage = `Ти живеш у місті ${city}.`;
-      }
+//Вивести на сторінку в один рядок через кому числа від 10 до 20
 
-      
-      let championMessage;
-      switch (sport.toLowerCase()) {
-        case "футбол":
-          championMessage = "Круто! Хочеш стати як Ліонель Мессі?";
-          break;
-        case "бокс":
-          championMessage = "Круто! Хочеш стати як Майк Тайсон?";
-          break;
-        case "теніс":
-          championMessage = "Круто! Хочеш стати як Роджер Федерер?";
-          break;
-        default:
-          championMessage = `Ваш улюблений вид спорту: ${sport}. Це теж чудово!`;
-      }
-
-      
-      alert(`Ваш вік: ${age} років.\n${cityMessage}\n${championMessage}`);
+let result1 = ""
+for (let i=10; i<=20; i++ ) {
+    result1 += i + ", "
+    
     }
-  }
+console.log (result1)
+
+    
+
+
+
+
+//Вивести квадрати чисел від 10 до 20
+
+for (let i=10; i<=20; i++ )
+    console.log (i ** 2);
+
+
+//Вивести таблицю множення на 7
+
+for (let i=1; i <= 10; i++ ) {
+
+    console.log (i*7);
+
+    }
+
+//Знайти суму всіх цілих чисел від 1 до 15
+let sum2 = 0;  
+
+for (let i = 1; i <= 15; i++) {
+    sum2 += i;  
 }
 
+console.log(sum2); 
 
 
+//Знайти добуток усіх цілих чисел від 15 до 35
 
-let numOrStr = prompt('input number or string');
-console.log(numOrStr);
+ let result2 = 1; 
 
-switch (true) {
-  case numOrStr === null:
-    console.log('ви відмінили');
-    break;
-  case numOrStr.trim() === '':
-    console.log('Empty String');
-    break;
-  case isNaN(+numOrStr):
-    console.log('number is Ba_NaN');
-    break;
-  default:
-    console.log('OK!');
+for (let i = 15; i <= 35; i++) {
+    result2 *= i; 
 }
 
+console.log(result2); 
 
 
-function compareNumbers(a, b) {
-  if (a > b) return `${a} більше, ніж ${b}`;
-  if (a < b) return `${a} менше, ніж ${b}`;
-  return "Числа рівні";
+
+//Знайти середнє арифметичне всіх цілих чисел від 1 до 500
+
+result3 = 0
+
+for (let i=1; i<=500 ; i++ ) {
+    result3 += i;
+    
+}
+let unswer = result3 / 500
+console.log(unswer);  
+
+
+ 
+//Вивести суму лише парних чисел у діапазоні від 30 до 80
+
+result4 = 0
+
+for (let i = 30; i <= 80; i++) {
+    if (i % 2 === 0) {
+        result4 += i;
+    }
+}
+console.log (result4)
+
+
+
+//Вивести всі числа в діапазоні від 100 до 200, які кратні 3
+
+result5 = 0
+for (let i = 100; i <= 200; i++) {
+    if (i % 3 === 0) {
+        result5 += i + ',';
+    }
+}
+console.log(result5)
+
+
+//Дано натуральне число. Знайти та вивести на сторінку всі його дільники.
+
+let result6 = ""
+let enterNum = prompt('введите любое число')
+
+for (let i = 1; i <= enterNum ; i++) {
+    if (enterNum % i == 0) {
+        result6 += i + ','
+    }
+}
+alert("Дільники числа: " + result6);
+
+//Визначити кількість його парних дільників
+
+let numMain = ""
+let numSecond = prompt ('введите число и мы выведем парные делители')
+numSecond = parseInt(numSecond);
+
+for ( let i=1; i <= numSecond; i++)  {
+    if (numSecond % i == 0 && i % 2 == 0) {
+        numMain += i + ','
+    }
+}
+numMain = numMain.slice(0, -1);
+alert('парные делители:'  + numMain);
+
+let sum = 0;
+
+
+//Знайти суму його парних дільників
+
+for ( let i=1; i <= numSecond; i++)  {
+    if (numSecond % i == 0 && i % 2 == 0) {
+        sum += i
+    }
 }
 
+alert('сумма парных делителей:' + sum)
 
-function compareDistances(km, feet) {
-  let meters = feet * 0.305;
-  return km * 1000 < meters ? `Кілометри менші` : `Фути менші`;
+
+//Надрукувати повну таблицю множення від 1 до 10
+
+
+let arr = []; 
+
+for (let i = 0; i <= 10; i++) {
+    let row = []; 
+    for (let j = 0; j <= 10; j++) {
+        row.push(i * j); 
+    }
+    arr.push(row); 
 }
 
+console.table(arr); 
 
-function isDivisor(a, b) {
-  return `${a} ${b % a === 0 ? "є" : "не є"} дільником ${b}, а ${b} ${a % b === 0 ? "є" : "не є"} дільником ${a}`;
-}
-
-
-function lastDigitEvenOdd(num) {
-  let lastDigit = num % 10;
-  return `Остання цифра: ${lastDigit}, вона ${lastDigit % 2 === 0 ? "парна" : "непарна"}`;
-}
-
-
-function compareTwoDigitNumber(num) {
-  let first = Math.floor(num / 10);
-  let second = num % 10;
-  return first > second ? `Перша цифра більша` : `Друга цифра більша`;
-}
-
-
-function analyzeThreeDigitNumber(num) {
-  let first = Math.floor(num / 100);
-  let second = Math.floor((num / 10) % 10);
-  let third = num % 10;
-  let sum = first + second + third;
-  let product = first * second * third;
-  
-  return {
-      isSumEven: sum % 2 === 0,
-      isSumDivisibleBy5: sum % 5 === 0,
-      isProductGreaterThan100: product > 100,
-      allDigitsSame: first === second && second === third,
-      hasSameDigits: new Set([first, second, third]).size < 3
-  };
-}
-
-
-function isMirrorNumber(num) {
-  let str = num.toString();
-  return str === str.split('').reverse().join('');
-}
-
-
-console.log(compareNumbers(5, 10));
-console.log(compareDistances(2, 5000));
-console.log(isDivisor(3, 9));
-console.log(lastDigitEvenOdd(123));
-console.log(compareTwoDigitNumber(47));
-console.log(analyzeThreeDigitNumber(345));
-console.log(isMirrorNumber(123321));
+//последнее посморел в чате гпт(не понял вообще как сделать)
+    
