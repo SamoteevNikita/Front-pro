@@ -1,5 +1,14 @@
-//Реалізуйте функцію removeElement(array, item), щоб видалити елемент item з масиву array.\
-let arrey = [1, 2, 3, 4, 5, 6, 7]
+//Реалізуйте функцію generateKey(length, characters), що повертає рядок випадкових символів із набору characters довжиною length.
+function generateKey (length, characters) {
+    let key = '';
+    for (let i = 0; i < length; i++) {
+        let createRandom = Math.floor(Math.random() * characters.length);
+        key += characters[createRandom];
+    }
+    return key
+}
 
-removeElement(arrey, 5)
-console.log (arrey)
+let str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+let key = generateKey(10, str);
+
+console.log(key);
