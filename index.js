@@ -1,5 +1,10 @@
-//Реалізуйте функцію removeElement(array, item), щоб видалити елемент item з масиву array.\
-let arrey = [1, 2, 3, 4, 5, 6, 7]
+function removeElement(array, item) {
+    let index = array.indexOf(item);
+    if (index !== -1) {
+        array.splice(index, 1);
+    }
+}
 
-removeElement(arrey, 5)
-console.log (arrey)
+let array = [1, 2, 3, 4, 5];
+removeElement (array, 3)
+console.log (array)
