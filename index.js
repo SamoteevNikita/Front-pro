@@ -1,140 +1,116 @@
-//Створити масив, довжину та елементи якого задає користувач. Потім відсортувати масив за зростанням. Потім видалити елементи з масиву з 2 по 4 (включно). У міру змін виводити вміст масиву на сторінку.
+//Написати функцію, яка приймає один параметр. При першому виклику вона запам'ятовує його, при другому — підсумовує переданий параметр з тим, що передали перший раз і тд. Все це із замиканнями, наприклад: sum(3) = 3 sum(5) = 8 sum(20) = 28
+function createFunction() {
+  let total = 0;  
 
-window.onload = function() {
-    let length = prompt("Введите длину массива:");
-    let arr = [];
-
-    // Заполняем массив элементами
-    for (let i = 0; i < length; i++) {
-        arr.push(prompt(`Введите элемент ${i + 1}:`));
-    }
-
-    // Показываем созданный массив
-    alert(`Созданный массив: [${arr}]`);
-
-    // Сортируем массив по возрастанию
-    arr.sort((a, b) => a - b);
-
-    // Показываем отсортированный массив
-    alert(`Отсортированный массив: [${arr}]`);
-
-    //Потім видалити елементи з масиву з 2 по 4 (включно).
-    arr.splice(2, 3);
-    alert (`виправленний масив: [${arr}]`)
-};
-
-
-window.onload = function() {
-    //Дано масив [16,-37,54,-4,72,-56,47,4,-16,25,-37,46,4,-51,27,-63,4,-54,76,-4,12,-35,4,47]
-    //Знайти суму та кількість позитивних елементів.
-    let arr = [16,-37,54,-4,72,-56,47,4,-16,25,-37,46,4,-51,27,-63,4,-54,76,-4,12,-35,4,47]
-    let sum = 0;
-    let count = 0;
-    for (let i=0; i<arr.length; i++) {
-        if (arr[i] > 0) {
-            sum += arr[i];
-            count++;
-        }
-    }
-    alert (`сумма позитивных елементов: [${sum}]`)
-    alert (`количество елементов: [${count}]`)
-
-    //Знайти мінімальний елемент масиву та його порядковий номер.
-    let min = arr[0];
-    let minIndex = 0;
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] < min) {
-            min = arr[i];
-            minIndex = i;
-        }
-    }
-
-    alert (`мінімальний елемент масиву: [${min}]`)
-
-    //Знайти максимальний елемент масиву та його порядковий номер.
-    let max = arr[0];
-    let maxIndex = 0;
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
-            maxIndex = i;
-        }
-    }
-    alert (`максимальный елемент масиву: [${max}]`)
-
-    //Визначити кількість негативних елементів.
-    let negativeCount = 0
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] < 0) {
-            negativeCount++;
-    }
-    alert (`кількість негативних елементів: [${negativeCount}]`)
-
-    //Знайти кількість непарних позитивних елементів.
-
-    let countOddPositive = 0;
-    for (let i=0; i< arr.length; i++) {
-        if ( arr[i] > 0 && arr[i] % 2 != 0) {
-            countOddPositive++;
-        }
-    }
-    alert  (`кількість непарних позитивних елементів: [${countOddPositive}]`)
-    
-    
-
-    //Визначити кількість парних позитивних елементів.
-    let countPositive = 0;
-    for (let i=0 ; i < arr.length; i++) {
-        if ( arr[i] > 0 && arr[i] % 2 == 0) {
-            countPositive++;
-        }
-    }
-    alert  (`кількість непарних позитивних елементів: [${countPositive}]`)
-
-    //Знайти суму парних позитивних елементів.
-    let sumPositive = 0;
-    for (let i= 0 ; i < arr.length; i++) {
-        if (arr[i] > 0 && arr[i] % 2 == 0) {
-            sumPositive += arr[i];
-        }
-    }
-    alert (`сума парних позитивних елементів: [${sumPositive}]`)
-
-    //Знайти суму непарних позитивних елементів.
-    let sumOddPositive = 0;
-    for (let i=0;  i < arr.length; i++) {
-        if (arr[i] > 0 && arr[i] % 2 != 0)
-            sumOddPositive += arr[i];
-        }
-    }
-    alert (`сума непарних позитивних елементів: [${sumOddPositive}]`)
-
-
-
-    //Знайти добуток позитивних елементів.
-    let productPositive = 1;
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] > 0) {
-            productPositive *= arr[i];
-        }
-    }
-
-    alert (`добуток позитивних елементів: [${productPositive}]`)
-    
-    //Знайти найбільший серед елементів масиву, решту занулити.
-
-    let max2 = arr[0];
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i] > max2) {
-            max2 = arr[i];
-        }
-    }
-
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] !== max2) {
-            arr[i] = 0;
-        }
-    }
-    
-    alert(`Масив після змін: [${arr}]`);  
+  return function(num) {
+    total += num; 
+    return total;  
+  };
 }
+
+const sum = createFunction();  
+console.log(sum(3));  
+console.log(sum(5)); 
+console.log(sum(20)); 
+console.log(sum(1));  
+
+
+//Даний масив з елементами різних типів. Створити функцію, яка вираховує середнє арифметичне лише числових елементів даного масиву.
+function getNumFronArr(arr) {
+  let sum_1 = 0;
+  let count = 0;
+  let del = 0;
+
+  for (let i = 0; i < arr.length; i++) { 
+    if (typeof arr[i] === 'number') {
+      sum_1 += arr[i];
+      count++;
+    }
+  }
+  del = sum_1 / count
+  
+  return { sum_1, count, del };
+}
+
+let arr = ['mom', true, 22, undefined, 12];
+let uns = getNumFronArr(arr);
+console.log(uns); 
+
+
+//Написати функцію doMath(x, znak, y), яка отримує 3 аргументи: числа x та y, рядок znak. У змінній znak може бути значення +, -, *, /, %, ^ (ступінь). Вивести результат математичної дії, вказаної у змінній znak. Обидва числа та знак виходять від користувача.
+let num3 = Number(prompt("Enter the first number:")); 
+let num4 = Number(prompt("Enter the second number:")); 
+let znak = prompt("Enter the operation (+, -, *, /, %, ^ (ступінь)):");
+
+let result 
+function doMath (num3, num4, znak) {
+  if (znak === '+') {
+    result = num3 + num4; 
+  } else if (znak === '-') {
+    result = num3 - num4;  
+  } else if (znak === '*') {
+    result = num3 * num4; 
+  } else if (znak === '/') {
+    if (num4 !== 0) {  
+      result = num3 / num4; 
+    } else {
+      result = "Cannot divide by zero"; 
+    }
+  } else if (znak === '%') {
+    result = num3 % num4;  
+  } else if (znak === '^') {
+    result = num3 ** num4;  
+  } else {
+    result = "Invalid operation";  
+  }
+
+  return result  
+}
+let uns_1 = doMath(num3, num4, znak)
+console.log(uns_1) 
+
+
+
+
+//Створити функцію, яка видаляє з рядка всі символи, які ми 
+// передали другим аргументом. 
+// 'func("hello world", ['l', 'd'])' поверне нам "heo wor".
+//  Вихідний рядок та символи для видалення задає користувач
+
+let str = prompt('Напишите текст')
+let delstr = prompt('напишите буквы которые хотите удалить')
+
+function delAbcfromStr (str, AbcToRemove) {
+    
+return str
+  .split("")
+  .filter(char => !AbcToRemove.includes(char))
+  .join("");
+}
+let result_2 = delAbcfromStr(str, delstr.split(""))
+console.log(result_2)
+
+//Написати функцію заповнення даними користувача двомірного масиву. 
+// Довжину основного масиву та внутрішніх масивів задає користувач.
+//  Значення всіх елементів масивів задає користувач.
+
+
+
+let arr_4 = [];
+function getMass () {
+  let countOfMas = Number(prompt("Введите сколько рядков будет в массиве"));
+  let elements = Number(prompt("Напишите сколько символов будет в каждом массиве"));
+
+  for (let i = 0; i < countOfMas; i++) {
+    let subArray = [];
+    for (let j = 0; j < elements; j++) {
+      let value = prompt(`Введите значение для элемента ${j + 1} в строке ${i + 1}`);  
+      subArray.push(value);
+    }
+    arr_4.push(subArray)
+  }
+  console.log(arr_4);
+}
+
+getMass()
+
