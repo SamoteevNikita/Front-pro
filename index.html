@@ -2,12 +2,41 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <link rel="stylesheet" href="./styles.css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Массив от пользователя</title>
 </head>
 <body>
-    <div id="container"></div>
+
+    <div class="slider">
+        <img id="slide" src="https://via.placeholder.com/600x300/FF0000/FFFFFF?text=Slide+1" alt="Слайд">
+    </div>
+
+    <button id="prev">Prev</button>
+    <button id="next">Next</button>
+    
+
     <script src="index.js"></script>
+    <script>
+        const images = [
+            "https://img.goodfon.ru/wallpaper/big/a/69/kartinka-3d-dikaya-koshka.webp",
+            "https://i.pinimg.com/474x/63/4d/31/634d31070220cb81725ce83c39b2bbe6.jpg",
+            "https://cakeshop.com.ua/images/AcpSe7kFpmzMfgJUwhyXbNbja_gwkleunua5ZVM9jTQ/h:5000/bG9jYWw/6Ly8vY2FrZXNob3AuY29tLnVhL3B1YmxpY19odG1sL3N0b3JhZ2UvYXBwL3B1YmxpYy9pbWcvcHJvZHVjdC81NzEzXzEuanBn"
+        ];
+
+        let currentIndex = 0;
+        let slide = document.getElementById('slide');
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            slide.src = images[currentIndex];
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            slide.src = images[currentIndex];
+        });
+    </script>
 </body>
 </html>
