@@ -1,7 +1,7 @@
 
 
-let inputBtn = document.getElementById('myTextField')
-let divBox = document.getElementById('infoBox')
+const inputBtn = document.getElementById('myTextField')
+const divBox = document.getElementById('infoBox')
 
 inputBtn.addEventListener( 'focus', () => {
     divBox.style.display = "block"
@@ -11,12 +11,12 @@ inputBtn.addEventListener('blur', () => {
     divBox.style.display = "none"
 });
 
-let btnFirst = document.getElementById('firstBtn')
-let btnSecond = document.getElementById('secondBtn')
-let userLink = ''
+const btnFirst = document.getElementById('firstBtn')
+const btnSecond = document.getElementById('secondBtn')
+const userLink = ''
 
 btnFirst.addEventListener('click', () => {
-    let inputLink = prompt("Введіть посилання:");
+    const inputLink = prompt("Введіть посилання:");
     if (inputLink && !inputLink.startsWith("http://") && !inputLink.startsWith("https://")) {
         inputLink = "https://" + inputLink
     }
