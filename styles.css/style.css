@@ -1,0 +1,20 @@
+div {
+    margin: 10px 0;
+  }
+
+button {
+    width: 50px;
+    background-color: purple;
+    margin-right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+p {
+    width: 50px;
+    margin-right: 30px;
+    color: black;
+  }
