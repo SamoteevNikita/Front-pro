@@ -1,3 +1,4 @@
+let currentProduct = null
 const productsData = {
   phones: [
       { name: 'iPhone 14', price: '1000$', desc: 'Сучасний смартфон' },
@@ -31,6 +32,7 @@ function showProducts(category) {
 
 
 function showProductInfo(product) {
+  currentProduct = product;
   productInfoBlock.innerHTML = `
       <h3>${product.name}</h3>
       <p>Ціна: ${product.price}</p>
@@ -41,9 +43,48 @@ function showProductInfo(product) {
   productInfoBlock.style.display = 'block';
 
   document.getElementById('buy-button').addEventListener('click', () => {
-      alert(`Товар "${product.name}" куплено!`);
-      resetView();
+      showOrderShow()
   });
+}
+
+
+function showOrderShow() {
+  const orderForm = document.getElementById('product-info');
+
+  orderForm.innerHTML = `
+    <div id="order-form">
+        <form id="orderForm">
+            <label>ФИО:</label>
+            <input type="text" id="name" required>
+
+            <label>Город:</label>
+            <select id="city" required>
+                <option value="">Выберите город</option>
+                <option value="Kiyv">Киев</option>
+                <option value="Kharkiv">Харьков</option>
+                <option value="Lviv">Львов</option>
+                <option value="Odesa">Одесса</option>
+            </select>
+
+            <label>Отделение новой почты:</label>
+            <input type="text" id="np" required>
+
+            <label>Оплата:</label>
+            <input type="radio" name="payment" value="Накладная оплата"> Накладной платеж
+            <input type="radio" name="payment" value="Оплата картой"> Оплата картой
+
+            <label>Количество:</label>
+            <input type="number" id="quantity" min="1" required>
+
+            <label>Комментарий:</label>
+            <textarea id="comment"></textarea>
+
+            <button type="button" id="confirmBtn">Подтвердить заказ</button>
+        </form>
+    </div>
+  `;
+
+  finishOrder()
 }
 
 
@@ -61,3 +102,27 @@ categoriesBlock.addEventListener('click', (event) => {
       showProducts(category);
   }
 });
+
+function finishOrder () {
+  const finishBtn = document.getElementById('confirmBtn')
+
+  
+
+  finishBtn.addEventListener('click', () => {
+
+    const name = document.getElementById('name').value.trim();
+    const city = document.getElementById('city').value;
+    const warehouse = document.getElementById('np').value.trim();
+    const quantity = document.getElementById('quantity').value;
+    const paymentMethod = document.querySelector('input[name="payment"]:checked');
+
+    alert(`
+      Спасибо за заказ ${name}!
+      Вы купили: ${currentProduct.name}
+      Количество: ${quantity}
+      Город: ${city}
+      Отделение Новой почты: ${warehouse}
+      Метод оплаты: ${paymentMethod.value}
+    `);
+  })
+}

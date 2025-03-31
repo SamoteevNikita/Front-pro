@@ -31,9 +31,7 @@
   border: 1px solid #ddd;
 }
 
-.item:hover {
-  background: #f0f0f0;
-}
+
 
 button {
   padding: 10px;
@@ -44,6 +42,13 @@ button {
   border: none;
 }
 
-button:hover {
-  background: darkgreen;
+
+#orderForm {
+  display: flex;
+  flex-direction: column;
+
 }
+
+
+
+
