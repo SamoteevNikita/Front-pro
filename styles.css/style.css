@@ -1,7 +1,49 @@
-.registrationForm {
+.container {
   display: flex;
-  flex-direction: column;
-  width: 200px;
-  padding: 20px;
   gap: 20px;
+}
+
+.block {
+  padding: 20px;
+  border: 1px solid #ccc;
+  min-width: 200px;
+}
+
+.categories {
+  background: #f8f8f8;
+}
+
+.products {
+  background: #e8f4ff;
+  display: none; /* Изначально скрыт, пока не выбрана категория */
+}
+
+.product-info {
+  background: #ffe8e8;
+  display: none; /* Изначально скрыт, пока не выбран товар */
+}
+
+.item {
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px 0;
+  background: white;
+  border: 1px solid #ddd;
+}
+
+.item:hover {
+  background: #f0f0f0;
+}
+
+button {
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  background: green;
+  color: white;
+  border: none;
+}
+
+button:hover {
+  background: darkgreen;
 }

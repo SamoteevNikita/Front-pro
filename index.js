@@ -1,39 +1,63 @@
-const userForm = document.querySelector(".registrationForm");
+const productsData = {
+  phones: [
+      { name: 'iPhone 14', price: '1000$', desc: 'Сучасний смартфон' },
+      { name: 'Samsung Galaxy S23', price: '900$', desc: 'Флагман Samsung' }
+  ],
+  laptops: [
+      { name: 'MacBook Air', price: '1200$', desc: 'Легкий та потужний' },
+      { name: 'Dell XPS 15', price: '1300$', desc: 'Високопродуктивний ноутбук' }
+  ]
+};
+
+const productsBlock = document.getElementById('products');
+const productInfoBlock = document.getElementById('product-info');
+const categoriesBlock = document.querySelector('.categories');
 
 
-userForm.addEventListener('submit', function(event) {
-    event.preventDefault()
+function showProducts(category) {
+  productsBlock.innerHTML = ''; 
+  productInfoBlock.innerHTML = ''; 
+
+  productsData[category].forEach(product => {
+      const productItem = document.createElement('div');
+      productItem.classList.add('item');
+      productItem.textContent = product.name;
+      productItem.addEventListener('click', () => showProductInfo(product));
+      productsBlock.appendChild(productItem);
+  });
+
+  productsBlock.style.display = 'block';
+}
 
 
-    const formData = new FormData(userForm);
-    const values = {
-    name: formData.get("name"),
-    surname: formData.get("surname"),
-    gender: formData.get("gender") || "Not selected",
-    birthday: formData.get("birthday"),
-    city: formData.get("city"),
-    address: formData.get("adress"), 
-    languages: formData.getAll("languages").join(", ") || "Not selected",
-    email: formData.get("email"),
-  };
-
-  const tableHTML = `
-    <h2>Registration Data</h2>
-    <table border="1">
-        <tr><th>Field</th><th>Value</th></tr>
-        <tr><td>Name</td><td>${values.name}</td></tr>
-        <tr><td>Surname</td><td>${values.surname}</td></tr>
-        <tr><td>Gender</td><td>${values.gender}</td></tr>
-        <tr><td>Birthday</td><td>${values.birthday}</td></tr>
-        <tr><td>City</td><td>${values.city}</td></tr>
-        <tr><td>Address</td><td>${values.address}</td></tr>
-        <tr><td>Languages</td><td>${values.languages}</td></tr>
-        <tr><td>Email</td><td>${values.email}</td></tr>
-    </table>
-    <button onclick="location.reload()">Back</button>
+function showProductInfo(product) {
+  productInfoBlock.innerHTML = `
+      <h3>${product.name}</h3>
+      <p>Ціна: ${product.price}</p>
+      <p>${product.desc}</p>
+      <button id="buy-button">Купити</button>
   `;
 
+  productInfoBlock.style.display = 'block';
 
-  document.querySelector(".container").innerHTML = tableHTML;
+  document.getElementById('buy-button').addEventListener('click', () => {
+      alert(`Товар "${product.name}" куплено!`);
+      resetView();
+  });
+}
 
-})
+
+function resetView() {
+  productsBlock.innerHTML = '';
+  productInfoBlock.innerHTML = '';
+  productsBlock.style.display = 'none';
+  productInfoBlock.style.display = 'none';
+}
+
+
+categoriesBlock.addEventListener('click', (event) => {
+  if (event.target.classList.contains('item')) {
+      const category = event.target.id;
+      showProducts(category);
+  }
+});
