@@ -13,6 +13,8 @@ const productsData = {
 const productsBlock = document.getElementById('products');
 const productInfoBlock = document.getElementById('product-info');
 const categoriesBlock = document.querySelector('.categories');
+const myPurchases = document.getElementById('Purchase'); 
+
 
 
 function showProducts(category) {
@@ -115,14 +117,79 @@ function finishOrder () {
     const warehouse = document.getElementById('np').value.trim();
     const quantity = document.getElementById('quantity').value;
     const paymentMethod = document.querySelector('input[name="payment"]:checked');
+    const date = new Date().toLocaleString();
+
+    const order = {
+      name: name,
+      city: city,
+      warehouse: warehouse,
+      quantity: quantity,
+      paymentMethod: paymentMethod.value,
+      date: date,
+      product: currentProduct.name,
+      price: currentProduct.price,
+    }
+
+
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders.push(order);
+    localStorage.setItem('orders', JSON.stringify(orders));
 
     alert(`
       Спасибо за заказ ${name}!
-      Вы купили: ${currentProduct.name}
-      Количество: ${quantity}
-      Город: ${city}
-      Отделение Новой почты: ${warehouse}
-      Метод оплаты: ${paymentMethod.value}
     `);
   })
 }
+
+function showOrder () {
+  const orders = JSON.parse(localStorage.getItem('orders')) || [];
+  const ordersBlock = document.getElementById('products');
+  ordersBlock.innerHTML = '';
+
+  orders.forEach((order, index) => {
+    const orderItem = document.createElement('div');   
+    orderItem.classList.add('item')
+    orderItem.textContent = `Заказ от ${order.name} (${order.date}) - ${order.price} `;
+    orderItem.addEventListener('click', () => showOrderDetails(order, index))
+    ordersBlock.appendChild(orderItem);
+
+    const delateBtn = document.createElement('button')
+    delateBtn.textContent = 'Удалить'
+    delateBtn.addEventListener('click', () => deleteOrder(index))
+    ordersBlock.appendChild(delateBtn);
+  })
+}
+
+
+function showOrderDetails (order, index) {
+  const orderDetailsBlock = document.getElementById('product-info');
+  orderDetailsBlock.innerHTML = `
+    <h3>Деталі замовлення</h3>
+    <p>Ім'я: ${order.name}</p>
+    <p>Місто: ${order.city}</p>
+    <p>Відділення нової пошти: ${order.warehouse}</p>
+    <p>Кількість: ${order.quantity}</p>
+    <p>Метод оплати: ${order.paymentMethod}</p>
+    <p>Дата замовлення: ${order.date}</p>
+    <p>Продукт: ${order.product}</p>
+    <p>Ціна: ${order.price}</p>
+  `;
+}
+
+function deleteOrder(index) {
+  const orders = JSON.parse(localStorage.getItem('orders')) || [];
+  orders.splice(index, 1);
+  localStorage.setItem('orders', JSON.stringify(orders)); 
+  showOrder()
+}
+
+categoriesBlock.addEventListener('click', (event) => {
+  if (event.target.classList.contains('item')) {
+    if (event.target.id === 'purchase') {
+      showOrder();
+    } else {
+      const category = event.target.id;
+      showProducts(category);
+    }
+  }
+});
