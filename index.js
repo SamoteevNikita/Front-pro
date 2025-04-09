@@ -1,67 +1,65 @@
-
-let person = {
-  showInfo() {
-    console.log(`Ім'я: ${this.name}, Вік: ${this.age}`);
+class HtmlElement {
+  constructor(tagName, attributes = {}, content = '') {
+    this.tagName = tagName;        
+    this.attributes = attributes; 
+    this.content = content;        
+    this.children = [];           
   }
-};
 
-let car = {
-  showInfo() {
-    console.log(`Автомобіль: ${this.brand} ${this.model}, ${this.year}, колір: ${this.color}`);
-    if (this.owner) {
-      console.log('Власник:');
-      this.owner.showInfo();
-    } else {
-      console.log('Власник не призначений');
+
+  setAttribute(name, value) {
+    this.attributes[name] = value;
+  }
+
+
+  appendChild(child) {
+    this.children.push(child);
+  }
+
+
+  render() {
+    const el = document.createElement(this.tagName);
+
+
+    for (let attr in this.attributes) {
+      el.setAttribute(attr, this.attributes[attr]);
     }
-  },
 
-  setOwner(person) {
-    if (person.age >= 18) {
-      this.owner = person;
-    } else {
-      console.log('Власник повинен бути старше 18 років!');
+
+    if (this.content) {
+      el.textContent = this.content;
+    }
+
+
+    this.children.forEach(child => {
+      el.appendChild(child.render());
+    });
+
+    return el;
+  }
+
+
+  appendTo(selector) {
+    const target = document.querySelector(selector);
+    if (target) {
+      target.appendChild(this.render());
     }
   }
-};
+}
 
 
-let ivan = {
-  __proto__: person,
-  name: 'Іван',
-  age: 25
-};
 
-let katya = {
-  __proto__: person,
-  name: 'Катя',
-  age: 16
-};
+const container = new HtmlElement('div', { class: 'card', id: 'main' });
 
 
-let bmw = {
-  __proto__: car,
-  brand: 'BMW',
-  model: 'X5',
-  year: 2021,
-  color: 'Чорний',
-  owner: null
-};
-
-let audi = {
-  __proto__: car,
-  brand: 'Audi',
-  model: 'A4',
-  year: 2020,
-  color: 'Синій',
-  owner: null
-};
+const heading = new HtmlElement('h2', {}, 'привет');
 
 
-bmw.setOwner(ivan);   
-audi.setOwner(katya); 
+const paragraph = new HtmlElement('p', {}, 'как дела?');
 
 
-bmw.showInfo();
-audi.showInfo();
+container.appendChild(heading);
+container.appendChild(paragraph);
 
+
+container.appendTo('body');
