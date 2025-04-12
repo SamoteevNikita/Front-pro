@@ -1,127 +1,55 @@
-class Resident {
-  constructor(name) {
-    this.name = name;
-  }
-}
-
-class Apartment {
-  constructor(number) {
-    this.number = number;
-    this.residents = [];
-  }
-
-  addResident(resident) {
-    this.residents.push(resident);
-  }
-}
-
-class House {
-  constructor() {
-    this.apartments = [];
-  }
-
-  addApartment(apartment) {
-    this.apartments.push(apartment);
-  }
-
-  getInfo() {
-    let info = 'Дом содержит следующие квартиры:\n';
-    this.apartments.forEach(ap => {
-      info += `\nКвартира ${ap.number}:\n`;
-      ap.residents.forEach((res, i) => {
-        info += `  Жилец ${i + 1}: ${res.name}\n`;
-      });
-    });
-    return info;
-  }
-}
-
-
-let house = new House();
-let totalApartments = 0;
-let currentApartment = 1;
-
-
-const houseForm = document.querySelector('.house-form');
-const apartmentForm = document.querySelector('.apartment-form');
-const residentForm = document.querySelector('.resident-form');
-const showInfoBtn = document.querySelector('.show-info-btn');
-
-const apartmentNumberDisplay = document.querySelector('.apartment-number');
-const residentNumberDisplay = document.getElementById('resident-number');
-
-
-houseForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const amountInput = document.getElementById('aprtmt-amount');
-  totalApartments = parseInt(amountInput.value);
-
-  if (!totalApartments) {
-    alert('Введите количество квартир');
-    return;
-  }
-
-  houseForm.classList.add('hidden');
-  apartmentForm.classList.remove('hidden');
-  apartmentNumberDisplay.textContent = `Квартира №${currentApartment}`;
-});
-
-
-document.getElementById('apartment-btn').addEventListener('click', (e) => {
-  e.preventDefault();
-
-  const residentCount = parseInt(document.getElementById('resident-amount').value);
-  if (!residentCount) {
-    alert('Введите количество жильцов');
-    return;
-  }
-
-  apartmentForm.classList.add('hidden');
-  residentForm.classList.remove('hidden');
-
-  const residentNumber = document.getElementById('resident-number');
-  residentNumber.innerHTML = '';
-  for (let i = 1; i <= residentCount; i++) {
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.placeholder = `Имя жильца ${i}`;
-    input.required = true;
-    residentNumber.appendChild(input);
-  }
-});
-
-
-document.getElementById('residents-btn').addEventListener('click', (e) => {
-  e.preventDefault();
-
-  const inputs = residentNumberDisplay.querySelectorAll('input');
-  const apartment = new Apartment(currentApartment);
-
-  for (let input of inputs) {
-    const name = input.value.trim();
-    if (!name) {
-      alert('Все поля должны быть заполнены');
-      return;
+class Hamburger {
+    
+    constructor(size, stuffing) {
+      this.size = size;
+      this.stuffing = stuffing;
+      this.toppings = []; 
     }
-    apartment.addResident(new Resident(name));
+  
+    
+    addTopping(topping) {
+      if (!this.toppings.includes(topping)) {
+        this.toppings.push(topping);
+      }
+    }
+  
+   
+    calculatePrice() {
+      let total = this.size.price + this.stuffing.price;
+      this.toppings.forEach(t => total += t.price);
+      return total;
+    }
+  
+    
+    calculateCalories() {
+      let total = this.size.calories + this.stuffing.calories;
+      this.toppings.forEach(t => total += t.calories);
+      return total;
+    }
+  
+    
+    static SIZE_SMALL = { price: 50, calories: 20 };
+    static SIZE_LARGE = { price: 100, calories: 40 };
+  
+    static STUFFING_CHEESE = { price: 10, calories: 20 };
+    static STUFFING_SALAD = { price: 20, calories: 5 };
+    static STUFFING_POTATO = { price: 15, calories: 10 };
+  
+    static TOPPING_SAUCE = { price: 15, calories: 0 };
+    static TOPPING_MAYO = { price: 20, calories: 5 };
   }
 
-  house.addApartment(apartment);
-  currentApartment++;
-
-  residentForm.classList.add('hidden');
-
-  if (currentApartment <= totalApartments) {
-    apartmentForm.classList.remove('hidden');
-    document.getElementById('resident-amount').value = '';
-    apartmentNumberDisplay.textContent = `Квартира №${currentApartment}`;
-  } else {
-    showInfoBtn.classList.remove('hidden');
-  }
-});
+  
+  
+const hamburger = new Hamburger(Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE);
 
 
-showInfoBtn.addEventListener('click', () => {
-  alert(house.getInfo());
-});
+hamburger.addTopping(Hamburger.TOPPING_MAYO);
+
+console.log("Calories: " + hamburger.calculateCalories()); 
+console.log("Price: " + hamburger.calculatePrice());    
+
+  
+hamburger.addTopping(Hamburger.TOPPING_SAUCE);
+
+console.log("Price with sauce: " + hamburger.calculatePrice()); 
