@@ -1,29 +1,23 @@
+const responses = [
+  "Hello!",
+  "How's it going?",
+  "Nice to meet you!",
+  "What can I do for you?",
+  "I'm here to chat."
+];
 
-function updateTime() {
-  const now = new Date();
+function sendMessage() {
+  const userText = document.getElementById('userInput').value;
+  if (userText.toLowerCase() === "my watch has ended") {
+    document.getElementById('messages').innerHTML += "Bot: Goodbye!<br>";
+    document.getElementById('userInput').disabled = true;
+    return;
+  }
+  
+  document.getElementById('messages').innerHTML += `You: ${userText}<br>`;
+  document.getElementById('userInput').value = "";
 
-  const hours = now.getHours();
-  const minutes = now.getMinutes();
-  const seconds = now.getSeconds();
-
-
-  const hourTens = Math.floor(hours / 10);
-  const hourOnes = hours % 10;
-  const minuteTens = Math.floor(minutes / 10);
-  const minuteOnes = minutes % 10;
-  const secondTens = Math.floor(seconds / 10);
-  const secondOnes = seconds % 10;
-
-  document.getElementById('hour-tens').textContent = hourTens;
-  document.getElementById('hour-ones').textContent = hourOnes;
-  document.getElementById('minute-tens').textContent = minuteTens;
-  document.getElementById('minute-ones').textContent = minuteOnes;
-  document.getElementById('second-tens').textContent = secondTens;
-  document.getElementById('second-ones').textContent = secondOnes;
+  setTimeout(() => {
+    document.getElementById('messages').innerHTML += `Bot: ${responses[Math.floor(Math.random() * responses.length)]}<br>`;
+  }, Math.random() * 9000 + 1000); // Random delay (1-10 seconds)
 }
-
-
-setInterval(updateTime, 1000);
-
-
-updateTime();
