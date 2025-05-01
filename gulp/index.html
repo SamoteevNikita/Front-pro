@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="./dist/styles/bundle.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Массив от пользователя</title>
+</head>
+<body>
+    <form class="house-form">
+    <h2>Создать дом</h2>
+    <label for="aprtmt-amount">Число квартир</label>
+    <input type="number" id="aprtmt-amount" name="aprtmt-amount">
+    <button id="create-house-btn" class="action-btn">create</button>
+    </form>
+
+    <form class="apartment-form hidden" action="">
+        <h3 class="apartment-number"></h3>
+        <label for="resident-amount">Количество жильцов</label>
+        <input type="number" id="resident-amount" name="resident-amount">
+        <button id="apartment-btn" class="action-btn">Next</button>
+    </form>
+    <form class="resident-form hidden" action="">
+        <h3 id="resident-number"></h3>
+        <button id="residents-btn" class="action-btn">Save apartment</button>
+    </form>
+
+    <button class="show-info-btn hidden">Информация про дом</button>
+
+
+
+    <script src="./dist/index-min.js"></script>
+</body>
+</html>
