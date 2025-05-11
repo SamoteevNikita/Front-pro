@@ -1,32 +1,4 @@
-/*!**********************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles.scss ***!
-  \**********************************************************************************************************/
-.entry-btn {
-  width: 200px;
-}
-
-.background-primery-btn {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cart {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 250px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 15px;
-  z-index: 1050;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-/*!*****************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/bootstrap/dist/css/bootstrap.min.css ***!
-  \*****************************************************************************************************/
+.entry-btn{width:200px}.background-primery-btn{height:100vh;display:flex;align-items:center;justify-content:center}.cart{position:fixed;top:20px;right:20px;width:250px;background:#fff;border:1px solid #ddd;border-radius:10px;padding:15px;z-index:1050;box-shadow:0 4px 8px rgba(0,0,0,.1)}
 @charset "UTF-8";/*!
  * Bootstrap  v5.3.5 (https://getbootstrap.com/)
  * Copyright 2011-2025 The Bootstrap Authors
