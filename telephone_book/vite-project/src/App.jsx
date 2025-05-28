@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "./Components/Header/Header";
 import ContactList from "./Components/ContactList/ContactList";
 import AddContactForm from "./Components/AddContactForm/AddContactForm";
 
 function App() {
-  const [view, setView] = useState("contacts");
+
   const [contacts, setContacts] = useState([]);
 
 
@@ -35,12 +36,10 @@ function App() {
 
   return (
     <div>
-      <Header setView={setView} />
-      {view === "contacts" ? (
-        <ContactList contacts={contacts} onDelete={deleteContact} />
-      ) : (
-        <AddContactForm addContact={addContact} goBack={() => setView("contacts")} />
-      )}
+      <Routes>
+        <Route path="/" element={<ContactList contacts={contacts} onDelete={deleteContact} />} />
+        <Route path="/add" element={<AddContactForm addContact={addContact} />} />
+      </Routes>
     </div>
   );
 }
