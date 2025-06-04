@@ -1,20 +1,20 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 
-// Принимаем пропсы с теми именами, которые ты передаёшь в App.jsx
-function AddContactForm({ addContact, goBack }) {
+function AddContactForm({ addContact }) { 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!firstName || !lastName || !phone) return;
 
-    // Используем addContact, как передано из App.jsx
     addContact({ firstName, lastName, phone });
 
-    // Возврат к списку контактів
-    goBack();
+    navigate("/");
   };
 
   return (
@@ -33,7 +33,7 @@ function AddContactForm({ addContact, goBack }) {
         <input value={phone} onChange={(e) => setPhone(e.target.value)} />
       </div>
       <button type="submit">Зберегти</button>
-      <button type="button" onClick={goBack}>Скасувати</button>
+      <button type="button" onClick={() => navigate("/")}>Скасувати</button>
     </form>
   );
 }

@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./Components/Header/Header";
 import ContactList from "./Components/ContactList/ContactList";
 import AddContactForm from "./Components/AddContactForm/AddContactForm";
+import EditContactForm from "./Components/EditContactForm/EditContactForm";
 
 function App() {
 
@@ -34,16 +35,20 @@ function App() {
     setContacts(contacts.filter((c) => c.id !== id));
   };
 
+ const updateContact = (updateContact) => {
+  setContacts(contacts.map(c => c.id === updateContact.id ? updateContact : c))
+ }
+
   return (
     <div>
+      <Header /> 
       <Routes>
         <Route path="/" element={<ContactList contacts={contacts} onDelete={deleteContact} />} />
         <Route path="/add" element={<AddContactForm addContact={addContact} />} />
+        <Route path="/edit/:id" element={<EditContactForm contacts={contacts} updateContact={updateContact} />}/>
       </Routes>
     </div>
   );
 }
 
 export default App;
-
-/// привоетщврпщывшпщылордылворп

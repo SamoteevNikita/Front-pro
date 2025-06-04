@@ -1,8 +1,14 @@
-function Header({ setView }) {
+import { Link } from "react-router-dom"
+
+function Header() {
   return (
-    <div style={{ marginBottom: "20px" }}>
-      <button onClick={() => setView("contacts") } >Контакты</button>
-      <button onClick={() => setView("add")}>Добавить Контакт</button>
+    <div>
+      <Link to="/">
+        <button>Контакты</button>
+      </Link>
+      <Link to="/add">
+        <button>Добавить Контакт</button>
+      </Link>
     </div>
   )
 }
