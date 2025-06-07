@@ -4,8 +4,10 @@ import Header from "./Components/Header/Header";
 import ContactList from "./Components/ContactList/ContactList";
 import AddContactForm from "./Components/AddContactForm/AddContactForm";
 import EditContactForm from "./Components/EditContactForm/EditContactForm";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch;
 
   const [contacts, setContacts] = useState([]);
 
